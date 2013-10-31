@@ -5,8 +5,13 @@
  
 <hibernate-configuration>
     <session-factory>
-    	<property name="hibernate.show_sql">true</property>
+    	<property name="dialect">org.hibernate.dialect.HSQLDialect</property>  
+        <property name="hibernate.cache.use_query_cache">false</property>  
+    	<property name="hibernate.cache.use_second_level_cache">false</property>  
     	<property name="hbm2ddl.auto">create</property>
+    	<property name="connection.url">jdbc:hsqldb:mem:fundamentals</property>
+    	<property name="hibernate.show_sql">true</property>
+    	
         <mapping class="info.invertirenbolsa.fundamentales.domain.Balance" />
         <mapping class="info.invertirenbolsa.fundamentales.domain.Company" />
         <mapping class="info.invertirenbolsa.fundamentales.domain.Value" />

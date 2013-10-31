@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="Empresa")
+@Table(name="company")
 public class Company {
 
 	private Integer id;
@@ -17,6 +17,15 @@ public class Company {
 	private String cif;
 	private String ticker;
 	
+	public Company(){
+		
+	}
+	
+	public Company(String name, String cif, String ticker){
+		this.name = name;
+		this.cif = cif;
+		this.ticker = ticker;
+	}
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
@@ -35,7 +44,7 @@ public class Company {
 		this.name = name;
 	}
 	
-	@Column(name="cif")
+	@Column(name="cif", unique=true, length=10, nullable=false)
 	public String getCif() {
 		return cif;
 	}
@@ -43,7 +52,7 @@ public class Company {
 		this.cif = cif;
 	}
 	
-	@Column(name="ticker")
+	@Column(name="ticker", unique=true, length=6, nullable=false)
 	public String getTicker() {
 		return ticker;
 	}
