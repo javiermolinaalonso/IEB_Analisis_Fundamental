@@ -17,15 +17,20 @@ public class ValueKey {
 	private String keyName;
 	
 	public ValueKey(){
-		
+		super();
 	}
 	
 	public ValueKey(Integer xbrlid, String keyName) {
-		super();
+		this();
 		this.xbrlid = xbrlid;
 		this.keyName = keyName;
 	}
 
+	public ValueKey(Integer id, Integer xbrlid, String keyName) {
+		this(xbrlid, keyName);
+		this.id = id;
+	}
+	
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
@@ -44,7 +49,7 @@ public class ValueKey {
 		this.xbrlid = xbrlid;
 	}
 	
-	@Column(name="key_name")
+	@Column(name="key_name", nullable=false)
 	public String getKeyName() {
 		return keyName;
 	}

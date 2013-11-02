@@ -9,24 +9,24 @@ import org.hibernate.SessionFactory;
 
 public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
 
-	@Inject protected SessionFactory sFactory;
+	@Inject protected SessionFactory sessionFactory;
 	
 	protected Session getSession(){
-		return sFactory.getCurrentSession();
+		return sessionFactory.getCurrentSession();
 	}
 	
 	public E save(E entity) {
-		sFactory.getCurrentSession().save(entity);
+		sessionFactory.getCurrentSession().save(entity);
 		return entity;
 	}
 
 	public E update(E entity) {
-		sFactory.getCurrentSession().update(entity);
+		sessionFactory.getCurrentSession().update(entity);
 		return entity;
 	}
 
 	public void delete(E entity) {
-		sFactory.getCurrentSession().delete(entity);
+		sessionFactory.getCurrentSession().delete(entity);
 	}
 
 }

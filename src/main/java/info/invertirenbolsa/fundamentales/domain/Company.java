@@ -18,13 +18,19 @@ public class Company {
 	private String ticker;
 	
 	public Company(){
-		
+		super();
 	}
 	
 	public Company(String name, String cif, String ticker){
+		this();
 		this.name = name;
 		this.cif = cif;
 		this.ticker = ticker;
+	}
+	
+	public Company(Integer id, String name, String cif, String ticker){
+		this(name, cif, ticker);
+		this.id = id;
 	}
 	@Id
 	@GeneratedValue(generator="increment")
@@ -36,7 +42,7 @@ public class Company {
 		this.id = id;
 	}
 	
-	@Column(name="company_name")
+	@Column(name="company_name", length=255, nullable=false)
 	public String getName() {
 		return name;
 	}

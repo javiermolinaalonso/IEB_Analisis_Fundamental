@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -42,6 +43,7 @@ public class Value {
 	
 	@ManyToOne
 	@JoinColumn(name = "balance_id")
+	@ForeignKey(name = "value_balance_fkey")
 	public Balance getBalance() {
 		return balance;
 	}
@@ -51,6 +53,7 @@ public class Value {
 	
 	@ManyToOne
 	@JoinColumn(name = "key_value_id")
+	@ForeignKey(name = "value_valuekey_fkey")
 	public ValueKey getKey() {
 		return key;
 	}
@@ -58,7 +61,7 @@ public class Value {
 		this.key = key;
 	}
 	
-	@Column(name="value")
+	@Column(name="value", nullable=false)
 	public Double getValue() {
 		return value;
 	}

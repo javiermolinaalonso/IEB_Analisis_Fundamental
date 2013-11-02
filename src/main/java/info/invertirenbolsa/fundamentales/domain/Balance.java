@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -22,16 +23,21 @@ public class Balance {
 	private BalanceType balanceType;
 	
 	public Balance(){
-		
+		super();
 	}
 	
 	public Balance(Company company, String period, BalanceType balanceType) {
-		super();
+		this();
 		this.company = company;
 		this.period = period;
 		this.balanceType = balanceType;
 	}
 
+	public Balance(Integer id, Company company, String period, BalanceType balanceType) {
+		this(company, period, balanceType);
+		this.id = id;
+	}
+	
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
@@ -44,6 +50,7 @@ public class Balance {
 	
 	@ManyToOne
 	@JoinColumn(name = "company_id")
+	@ForeignKey(name = "balance_company_fkey")
 	public Company getCompany() {
 		return company;
 	}
@@ -51,7 +58,7 @@ public class Balance {
 		this.company = company;
 	}
 	
-	@Column(name="period")
+	@Column(name="period", length=8, nullable=false)
 	public String getPeriod() {
 		return period;
 	}
@@ -59,7 +66,7 @@ public class Balance {
 		this.period = period;
 	}
 	
-	@Column(name="type")
+	@Column(name="type", length=2, nullable=false)
 	public BalanceType getBalanceType() {
 		return balanceType;
 	}
