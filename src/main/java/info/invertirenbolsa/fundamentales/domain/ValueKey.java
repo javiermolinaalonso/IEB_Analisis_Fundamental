@@ -41,7 +41,7 @@ public class ValueKey {
 		this.id = id;
 	}
 	
-	@Column(name="xbrlid")
+	@Column(name="xbrlid", unique=true)
 	public Integer getXbrlid() {
 		return xbrlid;
 	}
@@ -49,7 +49,7 @@ public class ValueKey {
 		this.xbrlid = xbrlid;
 	}
 	
-	@Column(name="key_name", nullable=false)
+	@Column(name="key_name", nullable=false, unique=true)
 	public String getKeyName() {
 		return keyName;
 	}

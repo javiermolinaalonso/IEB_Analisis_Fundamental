@@ -1,5 +1,6 @@
 package info.invertirenbolsa.fundamentales.service.impl;
 
+import info.invertirenbolsa.fundamentales.dao.GenericDAO;
 import info.invertirenbolsa.fundamentales.dao.ValueKeyDAO;
 import info.invertirenbolsa.fundamentales.domain.ValueKey;
 import info.invertirenbolsa.fundamentales.service.ValueKeyService;
@@ -8,20 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ValueKeyServiceImpl implements ValueKeyService {
+public class ValueKeyServiceImpl extends AbstractFundamentalService<ValueKey> implements ValueKeyService {
 
 	@Autowired private ValueKeyDAO valueKeyDAO;
 	
 	@Override
 	public ValueKey createValueKey(ValueKey valuekey) {
-		try{
-			ValueKey savedValueKey = valueKeyDAO.save(valuekey);
-			return savedValueKey;
-		}catch(Exception e){
-			//TODO Parametrize this exception
-			e.printStackTrace();
-			return valuekey;
-		}
+		return super.saveOrIgnore(valuekey);
+	}
+
+	@Override
+	public GenericDAO<ValueKey> getGenericDAO() {
+		return valueKeyDAO;
 	}
 
 }

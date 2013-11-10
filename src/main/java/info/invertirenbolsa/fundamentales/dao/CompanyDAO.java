@@ -6,8 +6,10 @@ public interface CompanyDAO extends GenericDAO<Company>{
 
 	public Company getCompany(Integer id);
 	
-	public Company getCompany(String ticker);
+	public Company getCompanyByTicker(String ticker);
 	
 	public Company getCompany(Company company);
+
+	Company getCompanyByCif(String cif);
 	
 }

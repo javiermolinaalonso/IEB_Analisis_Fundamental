@@ -20,4 +20,11 @@ public interface CompanyService {
 	 * @return The created company
 	 */
 	public Company createCompany(Company company);
+
+	/**
+	 * Loads the Company identified by CIF or Ticker
+	 * @param cifOrTicker
+	 * @return
+	 */
+	public Company loadCompany(String cifOrTicker);
 }

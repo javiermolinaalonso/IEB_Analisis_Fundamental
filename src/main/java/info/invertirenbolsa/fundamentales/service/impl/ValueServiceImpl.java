@@ -1,5 +1,6 @@
 package info.invertirenbolsa.fundamentales.service.impl;
 
+import info.invertirenbolsa.fundamentales.dao.GenericDAO;
 import info.invertirenbolsa.fundamentales.dao.ValueDAO;
 import info.invertirenbolsa.fundamentales.domain.Balance;
 import info.invertirenbolsa.fundamentales.domain.Company;
@@ -15,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ValueServiceImpl implements ValueService {
+public class ValueServiceImpl extends AbstractFundamentalService<Value> implements ValueService {
 
 	@Autowired private BalanceService balanceService;
 	@Autowired private ValueKeyService valueKeyService;
@@ -26,6 +27,7 @@ public class ValueServiceImpl implements ValueService {
 		checkNotNullValues(value.getBalance().getCompany(), value.getBalance(), value.getKey(), value);
 		balanceService.createBalance(value.getBalance());
 		valueKeyService.createValueKey(value.getKey());
+		
 		try{
 			valueDAO.save(value);
 			return true;
@@ -49,6 +51,11 @@ public class ValueServiceImpl implements ValueService {
 		if(company == null){
 			throw new FundamentalsException(ExceptionsEnum.COMPANY_NULL);
 		}
+	}
+
+	@Override
+	public GenericDAO<Value> getGenericDAO() {
+		return valueDAO;
 	}
 
 }

@@ -16,7 +16,7 @@ public class CompanyDAOImpl extends GenericDAOImpl<Company> implements CompanyDA
 		if(idCompany != null){
 			return idCompany;
 		}
-		return getCompany(company.getTicker());
+		return getCompanyByTicker(company.getTicker());
 	}
 
 	@Override
@@ -25,10 +25,16 @@ public class CompanyDAOImpl extends GenericDAOImpl<Company> implements CompanyDA
 	}
 
 	@Override
-	public Company getCompany(String ticker) {
+	public Company getCompanyByTicker(String ticker) {
 		Criteria cr = getSession().createCriteria(Company.class);
 		cr.add(Restrictions.eq("ticker", ticker));
 		return (Company) cr.uniqueResult();
 	}
 
+	@Override
+	public Company getCompanyByCif(String cif) {
+		Criteria cr = getSession().createCriteria(Company.class);
+		cr.add(Restrictions.eq("cif", cif));
+		return (Company) cr.uniqueResult();
+	}
 }

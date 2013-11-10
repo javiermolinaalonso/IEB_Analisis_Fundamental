@@ -48,7 +48,7 @@ public class BalanceServiceTest extends DBTestCase {
 	
 	@Test
 	public void testEmptyDatabase(){
-		assertNull(companyDAO.getCompany("TEF.MC"));
+		assertNull(companyDAO.getCompanyByTicker("TEF.MC"));
 		Company c = new Company("Telefonica", "A00000000", "TEF.MC");
 		Balance b = new Balance(c, "2012-Q2", BalanceType.BA);
 		ValueKey key = new ValueKey(1100, "Total activo");
