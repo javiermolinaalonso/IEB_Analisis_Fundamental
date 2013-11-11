@@ -1,11 +1,15 @@
 package info.invertirenbolsa.fundamentales.dao;
 
-public interface GenericDAO<E> {
+import info.invertirenbolsa.fundamentales.domain.IdentifiableEntity;
 
-	public E save(E entity);
+public interface GenericDAO {
+
+	public Boolean exists(IdentifiableEntity entity);
 	
-	public E update(E entity);
+	public IdentifiableEntity save(IdentifiableEntity entity);
+	
+	public IdentifiableEntity update(IdentifiableEntity entity);
 
-	public void delete(E entity);
+	public void delete(IdentifiableEntity entity);
 
 }

@@ -18,6 +18,7 @@ import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -40,9 +41,12 @@ public class BalanceServiceTest extends DBTestCase {
         System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "postgres");  
 	}
 	
+	@BeforeClass
+	public static void prepareHSQL(){
+		HSQLServerUtil.getInstance().start("fundamentals");
+	}
 	@Before  
     public void setUp() throws Exception {  
-        HSQLServerUtil.getInstance().start("fundamentals");  
         super.setUp();  
     }
 	
@@ -50,16 +54,15 @@ public class BalanceServiceTest extends DBTestCase {
 	public void testEmptyDatabase(){
 		assertNull(companyDAO.getCompanyByTicker("TEF.MC"));
 		Company c = new Company("Telefonica", "A00000000", "TEF.MC");
-		Balance b = new Balance(c, "2012-Q2", BalanceType.BA);
+		Balance b = new Balance(c, "2012Q2", BalanceType.BA);
 		ValueKey key = new ValueKey(1100, "Total activo");
-		Value value = new Value(b, key, 1330d);
+		Value value = new Value(b, key, 2d);
 		valueService.insertValue(value);
 		
 		assertEquals(Integer.valueOf(1), c.getId());
 		assertEquals(Integer.valueOf(1), b.getId());
 		assertEquals(Integer.valueOf(1), key.getId());
 		assertEquals(Integer.valueOf(1), value.getId());
-		
 	}
 	
 	@Override

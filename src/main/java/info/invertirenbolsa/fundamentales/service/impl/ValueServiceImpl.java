@@ -12,6 +12,7 @@ import info.invertirenbolsa.fundamentales.service.BalanceService;
 import info.invertirenbolsa.fundamentales.service.ValueKeyService;
 import info.invertirenbolsa.fundamentales.service.ValueService;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class ValueServiceImpl extends AbstractFundamentalService<Value> implemen
 		try{
 			valueDAO.save(value);
 			return true;
-		}catch(Exception e){
+		}catch(HibernateException e){
 			e.printStackTrace();
 			return false;
 		}
@@ -54,7 +55,7 @@ public class ValueServiceImpl extends AbstractFundamentalService<Value> implemen
 	}
 
 	@Override
-	public GenericDAO<Value> getGenericDAO() {
+	public GenericDAO getGenericDAO() {
 		return valueDAO;
 	}
 

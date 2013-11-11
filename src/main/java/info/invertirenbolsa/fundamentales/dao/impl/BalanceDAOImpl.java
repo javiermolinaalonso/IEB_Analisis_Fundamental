@@ -9,7 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 @Repository("BalanceDAO")
-public class BalanceDAOImpl extends GenericDAOImpl<Balance> implements BalanceDAO {
+public class BalanceDAOImpl extends GenericDAOImpl implements BalanceDAO {
 
 	@Override
 	public Balance loadBalance(Company company, String period) {

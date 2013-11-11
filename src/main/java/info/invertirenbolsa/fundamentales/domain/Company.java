@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="company")
-public class Company {
+public class Company extends IdentifiableEntity {
 
 	private Integer id;
 	private String name;
@@ -30,8 +30,9 @@ public class Company {
 	
 	public Company(Integer id, String name, String cif, String ticker){
 		this(name, cif, ticker);
-		this.id = id;
+		this.setId(id);
 	}
+
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
@@ -41,7 +42,6 @@ public class Company {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
 	@Column(name="company_name", length=255, nullable=false)
 	public String getName() {
 		return name;

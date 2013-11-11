@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="value_key")
-public class ValueKey {
+public class ValueKey extends IdentifiableEntity {
 
 	private Integer id;
 	private Integer xbrlid;
@@ -28,7 +28,7 @@ public class ValueKey {
 
 	public ValueKey(Integer id, Integer xbrlid, String keyName) {
 		this(xbrlid, keyName);
-		this.id = id;
+		this.setId(id);
 	}
 	
 	@Id
@@ -40,7 +40,6 @@ public class ValueKey {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
 	@Column(name="xbrlid", unique=true)
 	public Integer getXbrlid() {
 		return xbrlid;

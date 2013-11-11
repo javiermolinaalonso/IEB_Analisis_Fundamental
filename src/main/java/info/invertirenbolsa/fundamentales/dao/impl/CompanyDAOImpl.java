@@ -8,7 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 @Repository("companyDAO")
-public class CompanyDAOImpl extends GenericDAOImpl<Company> implements CompanyDAO {
+public class CompanyDAOImpl extends GenericDAOImpl implements CompanyDAO {
 
 	@Override
 	public Company getCompany(Company company) {

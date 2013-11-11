@@ -29,7 +29,7 @@ public class BalanceServiceImpl extends AbstractFundamentalService<Balance> impl
 
 
 	@Override
-	public GenericDAO<Balance> getGenericDAO() {
+	public GenericDAO getGenericDAO() {
 		return balanceDAO;
 	}
 

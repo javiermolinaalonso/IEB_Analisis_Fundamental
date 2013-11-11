@@ -41,7 +41,7 @@ public class CompanyServiceImpl extends AbstractFundamentalService<Company> impl
 	}
 
 	@Override
-	public GenericDAO<Company> getGenericDAO() {
+	public GenericDAO getGenericDAO() {
 		return companyDao;
 	}
 }

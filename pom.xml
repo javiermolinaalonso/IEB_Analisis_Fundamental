@@ -21,6 +21,7 @@
 	<properties>
 		<spring.version>3.2.4.RELEASE</spring.version>
 		<hibernate.version>4.2.2.Final</hibernate.version>
+		<hibernatevalidator.version>5.0.0.Final</hibernatevalidator.version>
 	</properties>
 
 	<dependencies>
@@ -92,6 +93,12 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernatevalidator.version}</version>
+		</dependency>
+
 
 		<!-- PostgreSQL driver -->
 		<dependency>
@@ -105,7 +112,7 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.9</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-dbcp</artifactId>

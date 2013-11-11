@@ -9,13 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="balance")
-public class Balance {
+public class Balance extends IdentifiableEntity {
 
 	private Integer id;
 	private Company company;
@@ -35,7 +36,7 @@ public class Balance {
 
 	public Balance(Integer id, Company company, String period, BalanceType balanceType) {
 		this(company, period, balanceType);
-		this.id = id;
+		this.setId(id);
 	}
 	
 	@Id
@@ -59,6 +60,7 @@ public class Balance {
 	}
 	
 	@Column(name="period", length=8, nullable=false)
+	@Pattern(regexp="[0-9]{4}(Q1|Q2|Q3|Q4|3M|6M|9M|Y)")
 	public String getPeriod() {
 		return period;
 	}

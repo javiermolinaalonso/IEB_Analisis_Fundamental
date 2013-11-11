@@ -7,13 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="value")
-public class Value {
+public class Value extends IdentifiableEntity {
 
 	private Integer id;
 	private Balance balance;
@@ -62,6 +63,7 @@ public class Value {
 	}
 	
 	@Column(name="value", nullable=false)
+	@Min(1)
 	public Double getValue() {
 		return value;
 	}

@@ -19,7 +19,7 @@ public class ValueKeyServiceImpl extends AbstractFundamentalService<ValueKey> im
 	}
 
 	@Override
-	public GenericDAO<ValueKey> getGenericDAO() {
+	public GenericDAO getGenericDAO() {
 		return valueKeyDAO;
 	}
 
