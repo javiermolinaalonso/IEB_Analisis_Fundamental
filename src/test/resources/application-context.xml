@@ -46,11 +46,6 @@
         <property name="configLocation">
             <value>classpath:hibernate.cfg.xml</value>
         </property>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.show_sql">true</prop>
-            </props>
-        </property>
     </bean>
     
     <bean id="transactionManager"

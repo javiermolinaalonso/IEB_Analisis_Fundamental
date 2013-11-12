@@ -5,11 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="company")
+
+@Table(	name="company", 
+		uniqueConstraints = 
+			{
+				@UniqueConstraint(name="ticker_unique", columnNames={"ticker"}), 
+				@UniqueConstraint(name="cif_unique", columnNames={"cif"})
+			}
+	)
 public class Company extends IdentifiableEntity {
 
 	private Integer id;
@@ -50,7 +59,7 @@ public class Company extends IdentifiableEntity {
 		this.name = name;
 	}
 	
-	@Column(name="cif", unique=true, length=10, nullable=false)
+	@Column(name="cif", length=10, nullable=false)
 	public String getCif() {
 		return cif;
 	}
@@ -58,12 +67,21 @@ public class Company extends IdentifiableEntity {
 		this.cif = cif;
 	}
 	
-	@Column(name="ticker", unique=true, length=6, nullable=false)
+	@Column(name="ticker", length=6, nullable=false)
 	public String getTicker() {
 		return ticker;
 	}
 	public void setTicker(String ticker) {
 		this.ticker = ticker;
+	}
+	
+	@Transient
+	public String getCifOrTicker(){
+		if(cif == null){
+			return ticker;
+		}else{
+			return cif;
+		}
 	}
 	
 }

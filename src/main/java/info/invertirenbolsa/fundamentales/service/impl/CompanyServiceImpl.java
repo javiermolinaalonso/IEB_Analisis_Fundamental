@@ -3,6 +3,9 @@ package info.invertirenbolsa.fundamentales.service.impl;
 import info.invertirenbolsa.fundamentales.dao.CompanyDAO;
 import info.invertirenbolsa.fundamentales.dao.GenericDAO;
 import info.invertirenbolsa.fundamentales.domain.Company;
+import info.invertirenbolsa.fundamentales.exceptions.CompanyNotFoundException;
+import info.invertirenbolsa.fundamentales.exceptions.ExceptionsEnum;
+import info.invertirenbolsa.fundamentales.exceptions.FundamentalsException;
 import info.invertirenbolsa.fundamentales.service.CompanyService;
 
 import org.apache.log4j.Logger;
@@ -33,9 +36,15 @@ public class CompanyServiceImpl extends AbstractFundamentalService<Company> impl
 
 	@Override
 	public Company loadCompany(String cifOrTicker) {
+		if(cifOrTicker == null){
+			throw new FundamentalsException(ExceptionsEnum.COMPANY_GET_REQUEST_NULL);
+		}
 		Company c = companyDao.getCompanyByTicker(cifOrTicker);
 		if(c == null){
 			c = companyDao.getCompanyByCif(cifOrTicker);
+		}
+		if(c == null){
+			throw new CompanyNotFoundException();
 		}
 		return c;
 	}

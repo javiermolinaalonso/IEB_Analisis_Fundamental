@@ -27,8 +27,9 @@ public class ValueServiceImpl extends AbstractFundamentalService<Value> implemen
 	public boolean insertValue(Value value) {
 		checkNotNullValues(value.getBalance().getCompany(), value.getBalance(), value.getKey(), value);
 		balanceService.createBalance(value.getBalance());
+
+		//TODO Check if exists?
 		valueKeyService.createValueKey(value.getKey());
-		
 		try{
 			valueDAO.save(value);
 			return true;
@@ -38,8 +39,7 @@ public class ValueServiceImpl extends AbstractFundamentalService<Value> implemen
 		}
 	}
 	
-	private void checkNotNullValues(Company company, Balance balance,
-			ValueKey key, Value value) {
+	private void checkNotNullValues(Company company, Balance balance, ValueKey key, Value value) {
 		if(value == null){
 			throw new FundamentalsException(ExceptionsEnum.VALUE_NULL);
 		}

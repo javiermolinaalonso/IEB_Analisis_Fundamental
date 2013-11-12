@@ -2,8 +2,12 @@ package info.invertirenbolsa.fundamentales.dao;
 
 import info.invertirenbolsa.fundamentales.domain.IdentifiableEntity;
 
-public interface GenericDAO {
+import java.util.List;
 
+public interface GenericDAO<E> {
+
+	public List<E> getAll();
+	
 	public Boolean exists(IdentifiableEntity entity);
 	
 	public IdentifiableEntity save(IdentifiableEntity entity);

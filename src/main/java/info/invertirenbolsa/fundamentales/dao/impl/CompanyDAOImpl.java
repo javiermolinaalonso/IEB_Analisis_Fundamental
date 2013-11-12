@@ -1,6 +1,9 @@
 package info.invertirenbolsa.fundamentales.dao.impl;
 
+import java.util.List;
+
 import info.invertirenbolsa.fundamentales.dao.CompanyDAO;
+import info.invertirenbolsa.fundamentales.domain.Balance;
 import info.invertirenbolsa.fundamentales.domain.Company;
 
 import org.hibernate.Criteria;
@@ -36,5 +39,10 @@ public class CompanyDAOImpl extends GenericDAOImpl implements CompanyDAO {
 		Criteria cr = getSession().createCriteria(Company.class);
 		cr.add(Restrictions.eq("cif", cif));
 		return (Company) cr.uniqueResult();
+	}
+	
+	@Override
+	public List<Company> getAll() {
+		return getSession().createCriteria(Company.class).list();
 	}
 }
