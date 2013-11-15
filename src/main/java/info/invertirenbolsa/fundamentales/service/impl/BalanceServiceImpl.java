@@ -1,7 +1,6 @@
 package info.invertirenbolsa.fundamentales.service.impl;
 
 import info.invertirenbolsa.fundamentales.dao.BalanceDAO;
-import info.invertirenbolsa.fundamentales.dao.GenericDAO;
 import info.invertirenbolsa.fundamentales.domain.Balance;
 import info.invertirenbolsa.fundamentales.domain.Company;
 import info.invertirenbolsa.fundamentales.service.BalanceService;
@@ -30,7 +29,7 @@ public class BalanceServiceImpl extends AbstractFundamentalService<Balance> impl
 	}
 
 	@Override
-	public GenericDAO getGenericDAO() {
+	public BalanceDAO getGenericDAO() {
 		return balanceDAO;
 	}
 

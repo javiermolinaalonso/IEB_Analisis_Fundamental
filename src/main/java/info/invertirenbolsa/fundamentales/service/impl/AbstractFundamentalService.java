@@ -15,7 +15,7 @@ public abstract class AbstractFundamentalService<E extends IdentifiableEntity> {
 		try{
 			logger.debug("Saving " + entity.toString());
 			if(getGenericDAO().exists(entity)){
-				return entity;
+				return getGenericDAO().load(entity);
 			}
 			E savedEntity = (E) getGenericDAO().save(entity);
 			logger.debug("Entity "+ entity.toString()+" saved");
@@ -26,5 +26,5 @@ public abstract class AbstractFundamentalService<E extends IdentifiableEntity> {
 		}
 	}
 	
-	public abstract GenericDAO getGenericDAO();
+	public abstract GenericDAO<E> getGenericDAO();
 }

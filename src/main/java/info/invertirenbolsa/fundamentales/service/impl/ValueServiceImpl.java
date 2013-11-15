@@ -1,6 +1,5 @@
 package info.invertirenbolsa.fundamentales.service.impl;
 
-import info.invertirenbolsa.fundamentales.dao.GenericDAO;
 import info.invertirenbolsa.fundamentales.dao.ValueDAO;
 import info.invertirenbolsa.fundamentales.domain.Balance;
 import info.invertirenbolsa.fundamentales.domain.Company;
@@ -26,10 +25,10 @@ public class ValueServiceImpl extends AbstractFundamentalService<Value> implemen
 	@Override
 	public boolean insertValue(Value value) {
 		checkNotNullValues(value.getBalance().getCompany(), value.getBalance(), value.getKey(), value);
-		balanceService.createBalance(value.getBalance());
-
+		
+		value.setBalance(balanceService.createBalance(value.getBalance()));
+		value.setKey(valueKeyService.createValueKey(value.getKey()));
 		//TODO Check if exists?
-		valueKeyService.createValueKey(value.getKey());
 		try{
 			valueDAO.save(value);
 			return true;
@@ -55,7 +54,7 @@ public class ValueServiceImpl extends AbstractFundamentalService<Value> implemen
 	}
 
 	@Override
-	public GenericDAO getGenericDAO() {
+	public ValueDAO getGenericDAO() {
 		return valueDAO;
 	}
 

@@ -25,13 +25,11 @@ public class ValueKeyServiceImpl extends AbstractFundamentalService<ValueKey> im
 		return valueKeyDAO.exists(valuekey);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<ValueKey> getAll() {
 		return valueKeyDAO.getAll();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public GenericDAO<ValueKey> getGenericDAO() {
 		return valueKeyDAO;

@@ -1,20 +1,19 @@
 package info.invertirenbolsa.fundamentales.dao.impl;
 
-import java.util.List;
-
 import info.invertirenbolsa.fundamentales.dao.CompanyDAO;
-import info.invertirenbolsa.fundamentales.domain.Balance;
 import info.invertirenbolsa.fundamentales.domain.Company;
+
+import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 @Repository("companyDAO")
-public class CompanyDAOImpl extends GenericDAOImpl implements CompanyDAO {
+public class CompanyDAOImpl extends GenericDAOImpl<Company> implements CompanyDAO {
 
 	@Override
-	public Company getCompany(Company company) {
+	public Company load(Company company) {
 		Company idCompany = getCompany(company.getId());
 		if(idCompany != null){
 			return idCompany;
@@ -41,8 +40,15 @@ public class CompanyDAOImpl extends GenericDAOImpl implements CompanyDAO {
 		return (Company) cr.uniqueResult();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Company> getAll() {
 		return getSession().createCriteria(Company.class).list();
 	}
+
+	@Override
+	public Boolean exists(Company company) {
+		return null;
+	}
+
 }

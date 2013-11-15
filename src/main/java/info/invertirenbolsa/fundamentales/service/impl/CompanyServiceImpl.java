@@ -1,7 +1,6 @@
 package info.invertirenbolsa.fundamentales.service.impl;
 
 import info.invertirenbolsa.fundamentales.dao.CompanyDAO;
-import info.invertirenbolsa.fundamentales.dao.GenericDAO;
 import info.invertirenbolsa.fundamentales.domain.Company;
 import info.invertirenbolsa.fundamentales.exceptions.CompanyNotFoundException;
 import info.invertirenbolsa.fundamentales.exceptions.ExceptionsEnum;
@@ -50,7 +49,7 @@ public class CompanyServiceImpl extends AbstractFundamentalService<Company> impl
 	}
 
 	@Override
-	public GenericDAO getGenericDAO() {
+	public CompanyDAO getGenericDAO() {
 		return companyDao;
 	}
 }

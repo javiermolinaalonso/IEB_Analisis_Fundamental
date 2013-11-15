@@ -8,12 +8,14 @@ public interface GenericDAO<E> {
 
 	public List<E> getAll();
 	
-	public Boolean exists(IdentifiableEntity entity);
+	public Boolean exists(E entity);
 	
 	public IdentifiableEntity save(IdentifiableEntity entity);
 	
 	public IdentifiableEntity update(IdentifiableEntity entity);
 
 	public void delete(IdentifiableEntity entity);
+	
+	public E load(E entity);
 
 }

@@ -11,7 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 @Repository("BalanceDAO")
-public class BalanceDAOImpl extends GenericDAOImpl implements BalanceDAO {
+public class BalanceDAOImpl extends GenericDAOImpl<Balance> implements BalanceDAO {
 
 	@Override
 	public Balance loadBalance(Company company, String period) {
@@ -21,9 +21,25 @@ public class BalanceDAOImpl extends GenericDAOImpl implements BalanceDAO {
 		return (Balance) cr.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Balance> getAll() {
 		return getSession().createCriteria(Balance.class).list();
+	}
+
+	@Override
+	public Boolean exists(Balance balance) {
+		Balance b = loadBalance(balance.getCompany(), balance.getPeriod());
+		if(b == null){
+			return super.exists(balance);
+		}else{
+			return true;
+		}
+	}
+
+	@Override
+	public Balance load(Balance entity) {
+		return loadBalance(entity.getCompany(), entity.getPeriod());
 	}
 
 }
