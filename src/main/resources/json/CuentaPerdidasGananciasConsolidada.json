@@ -1,0 +1,114 @@
+[
+  {
+    "xbrlid": 1205,
+    "keyName": "importe.neto.cifra.de.negocios"
+  },
+  {
+    "xbrlid": 1206,
+    "keyName": "variacion.de.existencia.productoterminados.y.encurso"
+  },
+  {
+    "xbrlid": 1207,
+    "keyName": "trabajosrealizados.porlaempresa.parasuactivo"
+  },
+  {
+    "xbrlid": 1208,
+    "keyName": "aprovisionamiento"
+  },
+  {
+    "xbrlid": 1209,
+    "keyName": "otrosingresos.de.explotacion"
+  },
+  {
+    "xbrlid": 1217,
+    "keyName": "gastos.de.personal"
+  },
+  {
+    "xbrlid": 1210,
+    "keyName": "otrosgastos.de.explotacion"
+  },
+  {
+    "xbrlid": 1211,
+    "keyName": "amortizacion.del.inmobilizado"
+  },
+  {
+    "xbrlid": 1212,
+    "keyName": "imputacion.de.subvenciones.de.inmobilizadonofinanciero"
+  },
+  {
+    "xbrlid": 1214,
+    "keyName": "deterioro.y.resultadoporenajenaciones.del.inmobilizado"
+  },
+  {
+    "xbrlid": 1215,
+    "keyName": "otros.resultados"
+  },
+  {
+    "xbrlid": 1245,
+    "keyName": "resultado.de.explotacion"
+  },
+  {
+    "xbrlid": 1250,
+    "keyName": "ingresos.financieros"
+  },
+  {
+    "xbrlid": 1251,
+    "keyName": "gastos.financieros"
+  },
+  {
+    "xbrlid": 1252,
+    "keyName": "variaci�n.de.valorrazonable.por.enajenaciones.de.instrumentosfinancieros"
+  },
+  {
+    "xbrlid": 1254,
+    "keyName": "diferencias.de.cambio"
+  },
+  {
+    "xbrlid": 1255,
+    "keyName": "deterioro.y.resultado.por.enajenacion.de.instrumentosfinancieros"
+  },
+  {
+    "xbrlid": 1256,
+    "keyName": "resultado.financiero"
+  },
+  {
+    "xbrlid": 1253,
+    "keyName": "otros.resultados"
+  },
+  {
+    "xbrlid": 1265,
+    "keyName": "resultados.antesde.impuestos"
+  },
+  {
+    "xbrlid": 1270,
+    "keyName": "impuestos.sobre.beneficios"
+  },
+  {
+    "xbrlid": 1280,
+    "keyName": "resultado.del.erjercicio.rocedente.de.operacionescontinuas"
+  },
+  {
+    "xbrlid": 1285,
+    "keyName": "resultado.del.ejercicioprocedente.de.operacionesininterrumpidas.neto.de.impuestos"
+  },
+  {
+    "xbrlid": 1288,
+    "keyName": "resultado.consolidado.del.erjercicio"
+  },
+  {
+    "xbrlid": 1300,
+    "keyName": "resultadoatribuido.a.la.entidaddominante"
+  },
+  {
+    "xbrlid": 1289,
+    "keyName": "resultadoatribuido.a.intereses.minoritarios"
+  },
+  {
+    "xbrlid": 1290,
+    "keyName": "basico"
+  },
+  {
+    "xbrlid": 1295,
+    "keyName": "diluido"
+  }
+]
