@@ -1,0 +1,226 @@
+[
+{
+"xbrlid": 8435,
+"keyName": "flujos.efectivo.actividades.explotacion"
+},
+
+{
+"xbrlid": 8410,
+"keyName": "cobros.de.explotacion"
+},
+
+{
+"xbrlid": 8411,
+"keyName": "pagos.proveedores.personal.explotación"
+},
+
+{
+"xbrlid": 8421,
+"keyName": "pago.intereses"
+},
+
+{
+"xbrlid": 8422,
+"keyName": "pago.dividendos.remuneraciones.otros.instrumentos"
+},
+
+{
+"xbrlid": 8430,
+"keyName": "cobro.dividendos"
+},
+
+{
+"xbrlid": 8423,
+"keyName": "cobro.intereses"
+},
+
+{
+"xbrlid": 8424,
+"keyName": "cobros.pagos.impuesto.sobre.beneficios"
+},
+
+{
+"xbrlid": 8425,
+"keyName": "otros.cobros.pagos.actividades.explotación"
+},
+
+{
+"xbrlid": 8460,
+"keyName": "flujos.efectivo.actividades.inversion"
+},
+
+{
+"xbrlid": 8440,
+"keyName": "pagos.por.inversiones"
+},
+
+{
+"xbrlid": 8441,
+"keyName": "empresas.grupo.asociadas"
+},
+
+{
+"xbrlid": 8442,
+"keyName": "inmovilizado.material.intangible.inversiones.inmobiliarias"
+},
+
+{
+"xbrlid": 8443,
+"keyName": "otros.activos.financieros"
+},
+
+{
+"xbrlid": 8444,
+"keyName": "otros.activos"
+},
+
+{
+"xbrlid": 8450,
+"keyName": "cobros.por.desinversiones:"
+},
+
+{
+"xbrlid": 8451,
+"keyName": "empresas.grupo.asociadas.unidades.de.negocio"
+},
+
+{
+"xbrlid": 8452,
+"keyName": "inmovilizado.material.intangible.inversiones.inmobiliarias"
+},
+
+{
+"xbrlid": 8453,
+"keyName": "otros.activos.financieros"
+},
+
+{
+"xbrlid": 8454,
+"keyName": "otros.activos"
+},
+
+{
+"xbrlid": 8455,
+"keyName": "otros.flujos.efectivo.actividades.inversion"
+},
+
+{
+"xbrlid": 8456,
+"keyName": "cobros.dividendos"
+},
+
+{
+"xbrlid": 8457,
+"keyName": "cobros.intereses"
+},
+
+{
+"xbrlid": 8458,
+"keyName": "otros.cobros.pagos.actividades.inversion"
+},
+
+{
+"xbrlid": 8490,
+"keyName": "flujos.efectivo.actividades.financiacion"
+},
+
+{
+"xbrlid": 8470,
+"keyName": "cobros.pagos.instrumentos.patrimonio"
+},
+
+{
+"xbrlid": 8471,
+"keyName": "emision"
+},
+
+{
+"xbrlid": 8472,
+"keyName": "amortizacion"
+},
+
+{
+"xbrlid": 8473,
+"keyName": "(-).Adquisición"
+},
+
+{
+"xbrlid": 8474,
+"keyName": "enajenacion"
+},
+
+{
+"xbrlid": 8480,
+"keyName": "cobros.pagos.instrumentos.pasivo.financiero"
+},
+
+{
+"xbrlid": 8481,
+"keyName": "emision"
+},
+
+{
+"xbrlid": 8482,
+"keyName": "devolucion.amortizacion"
+},
+
+{
+"xbrlid": 8485,
+"keyName": "pagos.dividendos.remuneraciones.otros.instr.patrimonio"
+},
+
+{
+"xbrlid": 8486,
+"keyName": "otros.flujos.efectivo.actividades.financiacion"
+},
+
+{
+"xbrlid": 8487,
+"keyName": "pagos.intereses"
+},
+
+{
+"xbrlid": 8488,
+"keyName": "otros.cobros.pagos.actividades.financiacion"
+},
+
+{
+"xbrlid": 8492,
+"keyName": "efecto.variaciones.tipos.cambio"
+},
+
+{
+"xbrlid": 8495,
+"keyName": "aumento.disminucion.neto.efectivo.equivalentes"
+},
+
+{
+"xbrlid": 8499,
+"keyName": "efectivo.equivalentes.inicio.periodo"
+},
+
+{
+"xbrlid": 8500,
+"keyName": "efectivo.equivalentes.final.periodo"
+},
+
+{
+"xbrlid": 8550,
+"keyName": "caja.bancos"
+},
+
+{
+"xbrlid": 8552,
+"keyName": "otros.activos.financieros"
+},
+
+{
+"xbrlid": 8553,
+"keyName": "menos.descubiertos.bancarios.reintegrables.vista"
+},
+
+{
+"xbrlid": 8600,
+"keyName": "total.efectivo.equivalentes.final.periodo"
+}
+]

@@ -1,0 +1,138 @@
+[
+  {
+  "xbrlid": 3010,
+  "keyName": "saldo.inicial"
+  },
+  {
+  "xbrlid": 3011,
+  "keyName": "ajuste.por.cambios.de.criterio.contable"
+  },
+  {
+  "xbrlid": 3012,
+  "keyName": "ajuste.por.errores"
+  },
+  {
+  "xbrlid": 3015,
+  "keyName": "saldo.inicial.ajustado"
+  },
+  {
+  "xbrlid": 3020,
+  "keyName": "total.ingresos.reconocidos"
+  },
+  {
+  "xbrlid": 3025,
+  "keyName": "operaciones.con.socios.o.propietarios"
+  },
+  {
+  "xbrlid": 3026,
+  "keyName": "aumentos.de.capital"
+  },
+  {
+  "xbrlid": 3027,
+  "keyName": "conversión.de.pasivos.financieros.en.patrimonio.neto"
+  },
+  {
+  "xbrlid": 3028,
+  "keyName": "distribución.de.dividendos"
+  },
+  {
+  "xbrlid": 3029,
+  "keyName": "operaciones.con.acciones.o.participaciones.en.patrimonio.propias"
+  },
+  {
+  "xbrlid": 3030,
+  "keyName": "incrementos.por.combinaciones.de.negocios"
+  },
+  {
+  "xbrlid": 3032,
+  "keyName": "otras.operaciones.con.socios.o.propietarios"
+  },
+  {
+  "xbrlid": 3035,
+  "keyName": "otras.variaciones.de.patrimonio.neto"
+  },
+  {
+  "xbrlid": 3036,
+  "keyName": "pagos.basados.en.instrumentos.de.patrimonio"
+  },
+  {
+  "xbrlid": 3037,
+  "keyName": "traspasos.entre.partidas.de.patrimonio.neto"
+  },
+  {
+  "xbrlid": 3038,
+  "keyName": "otras.variaciones"
+  },
+  {
+  "xbrlid": 3040,
+  "keyName": "saldo.final"
+  }
+{
+"xbrlid": 3050,
+"keyName": "saldo.inicial"
+},
+{
+"xbrlid": 3051,
+"keyName": "ajuste.por.cambios.de.criterio.contable"
+},
+{
+"xbrlid": 3052,
+"keyName": "ajuste.por.errores"
+},
+{
+"xbrlid": 3055,
+"keyName": "saldo.inicial.ajustado"
+},
+{
+"xbrlid": 3060,
+"keyName": "total.ingresos.reconocidos"
+},
+{
+"xbrlid": 3065,
+"keyName": "operaciones.con.socios.o.propietarios"
+},
+{
+"xbrlid": 3066,
+"keyName": "aumentos.de.capital"
+},
+{
+"xbrlid": 3067,
+"keyName": "conversión.de.pasivos.financieros.en.patrimonio.neto"
+},
+{
+"xbrlid": 3068,
+"keyName": "distribución.de.dividendos"
+},
+{
+"xbrlid": 3069,
+"keyName": "operaciones.con.acciones.o.participaciones.en.patrimonio.propias"
+},
+{
+"xbrlid": 3070,
+"keyName": "incrementos.por.combinaciones.de.negocios"
+},
+{
+"xbrlid": 3072,
+"keyName": "otras.operaciones.con.socios.o.propietarios"
+},
+{
+"xbrlid": 3075,
+"keyName": "otras.variaciones.de.patrimonio.neto"
+},
+{
+"xbrlid": 3076,
+"keyName": "pagos.basados.en.instrumentos.de.patrimonio"
+},
+{
+"xbrlid": 3077,
+"keyName": "traspasos.entre.partidas.de.patrimonio.neto"
+},
+{
+"xbrlid": 3078,
+"keyName": "otras.variaciones"
+},
+{
+"xbrlid": 3080,
+"keyName": "saldo.final"
+}
+] 

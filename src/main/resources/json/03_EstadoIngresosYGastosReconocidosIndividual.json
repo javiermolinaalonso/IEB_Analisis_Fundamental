@@ -1,0 +1,78 @@
+[
+  {
+    "xbrlid": 335,
+    "keyName": "resultados.del.ejercicio"
+  },
+  {
+    "xbrlid": 310,
+    "keyName": "ingresosygastos.imputados.directamente.al.patrimonioneto"
+  },
+  {
+    "xbrlid": 320,
+    "keyName": "porvariacion.de.instrumentos.financieros"
+  },
+  {
+    "xbrlid": 321,
+    "keyName": "activos.financieros.disponiblesparalaventa"
+  },
+  {
+    "xbrlid": 323,
+    "keyName": "otros.ingresos_gastos"
+  },
+  {
+    "xbrlid": 330,
+    "keyName": "por.cobertura.de.flujos.de.efectivo"
+  },
+  {
+    "xbrlid": 340,
+    "keyName": "subvenciones.donaciones.y.legadosrecibidos"
+  },
+  {
+    "xbrlid": 344,
+    "keyName": "porganancias.y.perdidas.actuarialesy.otrosajustes"
+  },
+  {
+    "xbrlid": 343,
+    "keyName": "resto.de.ingresos.y.gastosimputadosdeirectamente.al.patrimonioneto"
+  },
+  {
+    "xbrlid": 345,
+    "keyName": "efecto.impositivo"
+  },
+  {
+    "xbrlid": 350,
+    "keyName": "transferencias.a.la.cuentade.pyg"
+  },
+  {
+    "xbrlid": 355,
+    "keyName": "por.valoracion.de.instrumentosfinancieros"
+  },
+  {
+    "xbrlid": 356,
+    "keyName": "activos.financieros.disponiblespara.la.venta"
+  },
+  {
+    "xbrlid": 358,
+    "keyName": "otros.ingresos_gastos"
+  },
+  {
+    "xbrlid": 360,
+    "keyName": "por.cobertura.de.flujos.de.efectivos"
+  },
+  {
+    "xbrlid": 366,
+    "keyName": "subvenciones.donanciones.y.legadosrecibidos"
+  },
+  {
+    "xbrlid": 365,
+    "keyName": "resto.de.ingresos.y,gastosimputadosdirectamente.al.patrimonioneto"
+  },
+  {
+    "xbrlid": 370,
+    "keyName": "efecto.impositivo"
+  },
+  {
+    "xbrlid": 400,
+    "keyName": "total.ingresos_gastos.reconocidos"
+  }
+]

@@ -41,8 +41,7 @@ public class ValuesAPIRest {
 	
 	@RequestMapping(value="",  method=RequestMethod.POST, consumes="application/json", produces="application/json")
 	public @ResponseBody Value insertValue(	@RequestBody Value value){
-			valueService.insertValue(value);
-			return value;
-		
+		valueService.insertValue(value);
+		return value;
 	}
 }

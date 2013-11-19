@@ -22,7 +22,15 @@ public class ValueKeyDAOImpl extends GenericDAOImpl<ValueKey> implements ValueKe
 
 	@Override
 	public Boolean exists(ValueKey entity){
-		return load(entity) != null;
+		try{
+			load(entity);
+			return true;
+		}catch(FundamentalsException fe){
+			if(ExceptionsEnum.VALUEKEY_NOT_FOUND.equals(fe.getCode())){
+				return false;
+			}
+			throw fe;
+		}
 	}
 	
 	@Override

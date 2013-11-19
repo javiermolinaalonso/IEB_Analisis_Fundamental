@@ -28,7 +28,6 @@ public class ValueServiceImpl extends AbstractFundamentalService<Value> implemen
 		
 		value.setBalance(balanceService.createBalance(value.getBalance()));
 		value.setKey(valueKeyService.createValueKey(value.getKey()));
-		//TODO Check if exists?
 		try{
 			valueDAO.save(value);
 			return true;
