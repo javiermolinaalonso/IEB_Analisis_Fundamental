@@ -1,5 +1,6 @@
 package infor.invertirenbolsa.financials;
 
+import info.invertirenbolsa.fundamentales.price.StockService;
 import info.invertirenbolsa.fundamentales.price.impl.StockList;
 import info.invertirenbolsa.fundamentales.price.impl.StockPrice;
 import info.invertirenbolsa.fundamentales.price.impl.StockServiceMultithreadImpl;
@@ -30,6 +31,9 @@ import org.apache.log4j.Logger;
 public class CovarianceLauncher {
 
     private static final String DEFAULT_PATH = "C:\\Users\\00556998\\Downloads\\quantquote_daily_sp500_83986\\daily";
+    
+    private static final String DEFAULT_OUTFILE = "C:\\Users\\00556998\\Downloads\\quantquote_daily_sp500_83986\\correlation";
+    
     private static final Logger logger = Logger.getLogger(CovarianceLauncher.class);
     //Data is available to download from https://quantquote.com/historical-stock-data
     public static void main(String args[]) throws Exception {
@@ -54,13 +58,18 @@ public class CovarianceLauncher {
     }
     
     private static void processEvolution(StockList s1, StockList s2, Instant from, Instant to) throws FileNotFoundException {
-        List<StockCorrelation> correlations = new StockServiceMultithreadImpl().computeBestIntervalCorrelation(s1, s2, from, to, 15, ChronoUnit.DAYS, 1, ChronoUnit.DAYS);
+        StockService s = new StockServiceMultithreadImpl();
+        List<StockCorrelation> c1 = s.computeBestIntervalCorrelation(s1, s2, from, to, 15, ChronoUnit.DAYS, 1, ChronoUnit.DAYS);
+        List<StockCorrelation> c2 = s.computeBestIntervalCorrelation(s1, s2, from, to, 30, ChronoUnit.DAYS, 1, ChronoUnit.DAYS);
+        List<StockCorrelation> c3 = s.computeBestIntervalCorrelation(s1, s2, from, to, 60, ChronoUnit.DAYS, 1, ChronoUnit.DAYS);
         
         logger.info("Evolution computation finished");
         
-        correlations.sort((x, y) -> x.getFrom().compareTo(y.getFrom()));
+        c3.sort((x, y) -> x.getFrom().compareTo(y.getFrom()));
         
-        printCorrelation(correlations, new BigDecimal(0.0d));
+        printCorrelation(c1, new BigDecimal(0.0d), DEFAULT_OUTFILE+"1");
+        printCorrelation(c2, new BigDecimal(0.0d), DEFAULT_OUTFILE+"2");
+        printCorrelation(c3, new BigDecimal(0.0d), DEFAULT_OUTFILE+"3");
     }
 
     private static void processCorrelations(StockList[][] stocks, Instant from, Instant to) throws FileNotFoundException {
@@ -68,12 +77,12 @@ public class CovarianceLauncher {
       
       logger.info("Correlation computation finished");
       
-      printCorrelation(correlations, new BigDecimal(0.9d));
+      printCorrelation(correlations, new BigDecimal(0.9d), DEFAULT_OUTFILE);
     }
 
-    private static void printCorrelation(List<StockCorrelation> correlations, BigDecimal threshold) throws FileNotFoundException {
+    private static void printCorrelation(List<StockCorrelation> correlations, BigDecimal threshold, String file) throws FileNotFoundException {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        PrintStream printer = new PrintStream(new File("C:\\Users\\00556998\\Downloads\\quantquote_daily_sp500_83986\\correlation.csv"));
+        PrintStream printer = new PrintStream(new File(file+".csv"));
         printer.print("Stock A, Stock B, From, To, Count, Correlation\n");
         correlations
             .stream()
