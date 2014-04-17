@@ -1,6 +1,10 @@
 package info.invertirenbolsa.fundamentales.service;
 
 import info.invertirenbolsa.fundamentales.domain.Company;
+import info.invertirenbolsa.fundamentales.domain.price.Price;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public interface CompanyService {
 
@@ -27,4 +31,6 @@ public interface CompanyService {
 	 * @return
 	 */
 	public Company loadCompany(String cifOrTicker);
+	
+	public List<Price> getPrices(LocalDate from, LocalDate to);
 }

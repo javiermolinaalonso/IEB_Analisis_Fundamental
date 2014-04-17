@@ -1,13 +1,18 @@
 package info.invertirenbolsa.fundamentales.service.impl;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import info.invertirenbolsa.fundamentales.dao.CompanyDAO;
 import info.invertirenbolsa.fundamentales.domain.Company;
+import info.invertirenbolsa.fundamentales.domain.price.Price;
 import info.invertirenbolsa.fundamentales.exceptions.CompanyNotFoundException;
 import info.invertirenbolsa.fundamentales.exceptions.ExceptionsEnum;
 import info.invertirenbolsa.fundamentales.exceptions.FundamentalsException;
 import info.invertirenbolsa.fundamentales.service.CompanyService;
 
 import org.apache.log4j.Logger;
+import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,4 +57,10 @@ public class CompanyServiceImpl extends AbstractFundamentalService<Company> impl
 	public CompanyDAO getGenericDAO() {
 		return companyDao;
 	}
+
+    @Override
+    public List<Price> getPrices(LocalDate from, LocalDate to) {
+        // TODO Auto-generated method stub
+        throw new NotYetImplementedException();
+    }
 }

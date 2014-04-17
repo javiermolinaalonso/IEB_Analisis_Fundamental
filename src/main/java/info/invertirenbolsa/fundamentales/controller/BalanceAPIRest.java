@@ -29,7 +29,6 @@ public class BalanceAPIRest {
 	
 	@RequestMapping(value="",  method=RequestMethod.POST, consumes="application/json", produces="application/json")
 	public @ResponseBody Balance insertCompany(@RequestBody Balance balance){
-		balanceService.createBalance(balance);
-		return balance;
+		return balanceService.createBalance(balance);
 	}
 }
