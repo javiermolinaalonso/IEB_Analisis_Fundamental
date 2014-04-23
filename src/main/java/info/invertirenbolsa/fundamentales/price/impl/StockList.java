@@ -1,5 +1,6 @@
 package info.invertirenbolsa.fundamentales.price.impl;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -15,13 +16,14 @@ public class StockList extends LinkedList<StockPrice> {
         this(new ArrayList<StockPrice>(), ticker);
     }
     public StockList(List<StockPrice> origin, String ticker){
-        super(origin);
+        super(origin.stream().sorted( (y, z) -> y.getInstant().compareTo(z.getInstant()) ).collect(Collectors.toList()));
         this.ticker = ticker;
     }
     
     public StockList filterStocksAndSort(StockList secondStock) {
         return filterStocksAndSort(secondStock, null, null);
     }
+    
     public StockList filterStocksAndSort(StockList secondStock, Instant from, Instant to) {
         List<Instant> secondStockInstants = secondStock.stream().map(y -> y.getInstant()).collect(Collectors.toList());
         return new StockList(parallelStream()
@@ -32,6 +34,16 @@ public class StockList extends LinkedList<StockPrice> {
                 .sorted((y, z) -> y.getInstant().compareTo(z.getInstant()))
                 .collect(Collectors.toList()), getTicker());
     }
+    
+    public StockList getMean(Integer sessions){
+        StockList list = new StockList(getTicker());
+        for(int i = 0; i <= size() - sessions; i++){
+            BigDecimal mean = new StatisticList(stream().skip(i).limit(sessions - 1).map(x -> x.getValue()).collect(Collectors.toList())).getMean();
+            list.add(new StockPrice(getTicker(), get(i + sessions - 1).getInstant(), mean));
+        }
+        return list;
+    }
+    
     public String getTicker() {
         return this.ticker;
     }
