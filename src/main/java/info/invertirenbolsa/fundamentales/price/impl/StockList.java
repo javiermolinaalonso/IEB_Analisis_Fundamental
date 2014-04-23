@@ -24,10 +24,11 @@ public class StockList extends LinkedList<StockPrice> {
     }
     public StockList filterStocksAndSort(StockList secondStock, Instant from, Instant to) {
         List<Instant> secondStockInstants = secondStock.stream().map(y -> y.getInstant()).collect(Collectors.toList());
-        return new StockList(stream()
+        return new StockList(parallelStream()
                 .filter(x -> secondStockInstants.contains(x.getInstant()))
                 .filter(x -> from != null ? x.getInstant().compareTo(from) >= 0 : true)
                 .filter(x -> from != null ? x.getInstant().compareTo(to) <= 0 : true)
+                .sequential()
                 .sorted((y, z) -> y.getInstant().compareTo(z.getInstant()))
                 .collect(Collectors.toList()), getTicker());
     }

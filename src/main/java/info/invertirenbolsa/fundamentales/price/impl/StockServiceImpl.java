@@ -65,7 +65,9 @@ public class StockServiceImpl implements StockService {
         while(currentTo.isBefore(to)){
             StockCorrelation correlation = computeCorrelation(s1, s2, currentFrom, currentTo);
             logger.debug(correlation.toString());
-            correlations.add(correlation);
+            if(!correlations.parallelStream().anyMatch(x -> x.getFrom().equals(correlation.getFrom()))) {
+                correlations.add(correlation);
+            }
             currentFrom = currentFrom.plus(stepAmount, stepUnit);
             currentTo = currentTo.plus(stepAmount, stepUnit);
         }

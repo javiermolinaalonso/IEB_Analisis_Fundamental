@@ -1,6 +1,8 @@
 package infor.invertirenbolsa.financials;
 
 import info.invertirenbolsa.fundamentales.price.StockService;
+import info.invertirenbolsa.fundamentales.price.impl.CorrelationOnlyBuyServiceImpl;
+import info.invertirenbolsa.fundamentales.price.impl.StatisticList;
 import info.invertirenbolsa.fundamentales.price.impl.StockList;
 import info.invertirenbolsa.fundamentales.price.impl.StockPrice;
 import info.invertirenbolsa.fundamentales.price.impl.StockServiceMultithreadImpl;
@@ -25,6 +27,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
@@ -42,34 +45,40 @@ public class CovarianceLauncher {
      
         logger.info("Data loaded");
         
-        StockList[][] stocks = createPairsOfStockList(data, "MA", "FSLR");
+        StockList[][] stocks = createPairsOfStockList(data, "MA", "V");
         
         logger.info("Vector created");
         
         Instant from = Instant.parse("2010-01-01T00:00:00.00Z");
         Instant to = Instant.parse("2013-01-01T00:00:00.00Z");
-        
 //        processCorrelations(stocks, from, to);
-        processEvolution(stocks[0][0], stocks[0][1], from, to);
         
+        Map<Integer, List<StockCorrelation>> correlationMap = processEvolution(stocks[0][0], stocks[0][1], from, to);
+        
+        BigDecimal computationResult = new CorrelationOnlyBuyServiceImpl().computeAlerts(correlationMap, stocks);
+        
+        logger.info(String.format("The final benefit is %s%%", computationResult.multiply(new BigDecimal(100)).setScale(2, RoundingMode.HALF_DOWN)));
         t = System.currentTimeMillis() - t;
         logger.info(String.format("The process took %s ms", t));
         logger.info("Exiting");
     }
     
-    private static void processEvolution(StockList s1, StockList s2, Instant from, Instant to) throws FileNotFoundException {
-        StockService s = new StockServiceMultithreadImpl();
-        List<StockCorrelation> c1 = s.computeBestIntervalCorrelation(s1, s2, from, to, 15, ChronoUnit.DAYS, 1, ChronoUnit.DAYS);
-        List<StockCorrelation> c2 = s.computeBestIntervalCorrelation(s1, s2, from, to, 30, ChronoUnit.DAYS, 1, ChronoUnit.DAYS);
-        List<StockCorrelation> c3 = s.computeBestIntervalCorrelation(s1, s2, from, to, 60, ChronoUnit.DAYS, 1, ChronoUnit.DAYS);
-        
+    private static Map<Integer, List<StockCorrelation>> processEvolution(StockList s1, StockList s2, Instant from, Instant to) throws FileNotFoundException {
+        Map<Integer, List<StockCorrelation>> correlationMap = new HashMap<>();
+        correlationMap.put(15, processEvolution(s1, s2, from, to, 15));
+//        correlationMap.put(30, processEvolution(s1, s2, from, to, 30));
+//        correlationMap.put(90, processEvolution(s1, s2, from, to, 90));
+//        correlationMap.put(365, processEvolution(s1, s2, from, to, 365));
         logger.info("Evolution computation finished");
-        
-        c3.sort((x, y) -> x.getFrom().compareTo(y.getFrom()));
-        
-        printCorrelation(c1, new BigDecimal(0.0d), DEFAULT_OUTFILE+"1");
-        printCorrelation(c2, new BigDecimal(0.0d), DEFAULT_OUTFILE+"2");
-        printCorrelation(c3, new BigDecimal(0.0d), DEFAULT_OUTFILE+"3");
+        return correlationMap;
+    }
+    
+    private static List<StockCorrelation> processEvolution(StockList s1, StockList s2, Instant from, Instant to, Integer i) throws FileNotFoundException {
+        StockService s = new StockServiceMultithreadImpl();
+        List<StockCorrelation> stockList = s.computeBestIntervalCorrelation(s1, s2, from, to, i, ChronoUnit.DAYS, 1, ChronoUnit.DAYS);
+        stockList.sort((x, y) -> x.getFrom().compareTo(y.getFrom()));
+        printCorrelation(stockList, new BigDecimal(0.0d), DEFAULT_OUTFILE+i.toString());
+        return stockList;
     }
 
     private static void processCorrelations(StockList[][] stocks, Instant from, Instant to) throws FileNotFoundException {
