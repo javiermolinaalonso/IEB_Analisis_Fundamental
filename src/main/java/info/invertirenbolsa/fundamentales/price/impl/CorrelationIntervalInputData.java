@@ -30,5 +30,4 @@ public class CorrelationIntervalInputData {
         return this.stepUnit;
     }
     
-    
 }

@@ -44,7 +44,11 @@ public class StatisticList extends ArrayList<BigDecimal> {
     }
     
     public BigDecimal getCorrelation(StatisticList otherList){
-        return getCovariance(otherList).divide(getStdDev().multiply(otherList.getStdDev()), 5, RoundingMode.HALF_DOWN);
+        BigDecimal dividend = getStdDev().multiply(otherList.getStdDev());
+        if(dividend.compareTo(BigDecimal.ZERO) == 0){
+            return BigDecimal.ZERO;
+        }
+        return getCovariance(otherList).divide(dividend, 5, RoundingMode.HALF_DOWN);
     }
     
     public BigDecimal getCovariance(StatisticList otherList) {

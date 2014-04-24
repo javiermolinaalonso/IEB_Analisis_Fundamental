@@ -3,7 +3,6 @@ package info.invertirenbolsa.fundamentales.price.impl;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,22 +16,21 @@ public class CorrelationDifferencesStrategyImpl implements CorrelationStrategy {
     
     public List<InvestmentAction> calculateBenefit(Instant currentInstant, Instant nextInstant, Iterable<StockList> stocks) {
         //Must determine which stock to buy and sell
-        Instant previousInstant = currentInstant.minus(15, ChronoUnit.DAYS);
         Iterator<StockList> it = stocks.iterator();
         StockList stockList1 = it.next();
         StockList stockList2 = it.next();
         List<InvestmentAction> actions = new ArrayList<>();
         
-        StockPrice s1 = stockList1.getByInstant(previousInstant);
-        StockPrice s2 = stockList2.getByInstant(previousInstant);
-        BigDecimal initialDifference = s1.getValue().subtract(s2.getValue());
         try{
+            StockPrice s1 = loadInstant(stockList1, currentInstant, nextInstant);
+            StockPrice currentS1Stock = stockList1.getByInstant(currentInstant);
+            BigDecimal s1IncreasePercent = currentS1Stock.getValue().subtract(s1.getValue()).divide(s1.getValue(), 5, RoundingMode.HALF_DOWN);
             
-            s1 = stockList1.getByInstant(currentInstant);
-            s2 = stockList2.getByInstant(currentInstant);
-            BigDecimal finalDifference = s1.getValue().subtract(s2.getValue());
+            StockPrice s2 = loadInstant(stockList2, currentInstant, nextInstant);
+            StockPrice currentS2Stock = stockList2.getByInstant(currentInstant);
+            BigDecimal s2IncreasePercent = currentS2Stock.getValue().subtract(s2.getValue()).divide(s2.getValue(), 5, RoundingMode.HALF_DOWN);
             
-            if(finalDifference.compareTo(initialDifference) > 0){
+            if(s1IncreasePercent.compareTo(s2IncreasePercent) <= 0){
                 //S2 has more value than S1 -> Sell S2 and Buy S1
                 actions.add(new InvestmentAction(s1, InvestmentActionEnum.BUY, AMOUNT_OF_SHARES));
                 actions.add(new InvestmentAction(stockList1.getByInstant(nextInstant), InvestmentActionEnum.SELL, AMOUNT_OF_SHARES));

@@ -45,9 +45,6 @@ public class CorrelationServiceImpl implements CorrelationService {
         return stockList;
     }
     
-    /**
-     * Given two stocks, return the best interval correlation in the date range
-     */
     private List<StockCorrelation> calculateBestIntervalCorrelationInDateRange(CorrelationTwoStocks stockData, CorrelationIntervalInputData intervalData){
         Instant currentFrom = Instant.from(stockData.getFrom());
         Instant currentTo = Instant.from(stockData.getFrom()).plus(intervalData.getInterval(), intervalData.getIntervalUnit());
@@ -67,11 +64,12 @@ public class CorrelationServiceImpl implements CorrelationService {
         return correlations;
     }
     
-    public InvestmentResult calculateCorrelationAlerts(List<StockCorrelation> correlations, CorrelationTwoStocks stockData) {
+    @Override
+    public InvestmentResult calculateCorrelationAlerts(List<StockCorrelation> correlations, CorrelationTwoStocks stockData, CorrelationIntervalInputData inputDataInterval) {
         Long secondsInvested = 0l;
         List<Instant> alerts = detectAlerts(correlations);
         InvestmentActions investmentActions = new InvestmentActions();
-        for(int i = 0; i < alerts.size(); i+=2){
+        for(int i = 0; i < alerts.size() - 1; i+=2){
             Instant currentInstant = alerts.get(i);
             Instant nextInstant = alerts.get(i+1);
             
@@ -79,7 +77,7 @@ public class CorrelationServiceImpl implements CorrelationService {
             List<InvestmentAction> actions = correlationStrategy.calculateBenefit(currentInstant, nextInstant, Arrays.asList(stockData.getS1(), stockData.getS2()));
             investmentActions.addAll(actions);
         }
-        InvestmentResult result = new InvestmentResult(stockData.getFrom(), stockData.getTo(), investmentActions);
+        InvestmentResult result = new InvestmentResult(stockData.getFrom(), stockData.getTo(), investmentActions, inputDataInterval);
         return result;
     }
 

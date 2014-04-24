@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class InvestmentActions {
     
@@ -59,11 +60,22 @@ public class InvestmentActions {
     }
 
     public BigDecimal getAmountInvested() {
-        return this.actions.parallelStream().map(x -> InvestmentActionEnum.BUY.equals(x.getAction()) ? x.getAmountInvested() : BigDecimal.ZERO).reduce( (x, y) -> y = y.add(x)).get();
+        Optional<BigDecimal> value = this.actions.parallelStream().map(x -> InvestmentActionEnum.BUY.equals(x.getAction()) ? x.getAmountInvested() : BigDecimal.ZERO).reduce( (x, y) -> y = y.add(x));
+        
+        if(value.isPresent()){
+            return value.get();
+        }else{
+            return BigDecimal.ZERO;
+        }
     }
 
     public BigDecimal getProfitability() {
-        return getBenefit().divide(getAmountInvested(), 5, RoundingMode.HALF_DOWN);
+        BigDecimal amountInvested = getAmountInvested();
+        if(amountInvested.compareTo(BigDecimal.ZERO) != 0){
+            return getBenefit().divide(amountInvested, 5, RoundingMode.HALF_DOWN);
+        }else{
+            return BigDecimal.ZERO;
+        }
     }
 
 }
