@@ -1,5 +1,6 @@
 package info.invertirenbolsa.fundamentales.price;
 
+import info.invertirenbolsa.fundamentales.price.impl.CorrelationTwoStocks;
 import info.invertirenbolsa.fundamentales.price.impl.StockList;
 import infor.invertirenbolsa.financials.StockCorrelation;
 
@@ -17,8 +18,4 @@ public interface StockService {
     
     public List<StockCorrelation> processCorrelations(StockList[][] stocks, Instant from, Instant to);
     
-    /**
-     * Given two stocks, return the best interval correlation in the date range
-     */
-    public List<StockCorrelation> computeBestIntervalCorrelation(StockList s1, StockList s2, Instant from, Instant to, Integer intervalAmount, TemporalUnit unit, Integer stepAmount, TemporalUnit stepUnit);
 }

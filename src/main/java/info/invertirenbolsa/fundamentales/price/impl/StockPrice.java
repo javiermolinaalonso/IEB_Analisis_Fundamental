@@ -1,6 +1,7 @@
 package info.invertirenbolsa.fundamentales.price.impl;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Instant;
 
 public class StockPrice {
@@ -26,6 +27,11 @@ public class StockPrice {
 
     public BigDecimal getValue() {
         return this.value;
+    }
+    
+    @Override
+    public String toString(){
+        return new StringBuilder().append(ticker).append("-").append(instant.toString()).append("-").append(value.setScale(2, RoundingMode.HALF_DOWN).toString()).toString();
     }
     
     

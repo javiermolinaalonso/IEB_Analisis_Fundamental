@@ -1,5 +1,7 @@
 package info.invertirenbolsa.fundamentales.price.impl;
 
+import info.invertirenbolsa.fundamentales.price.exceptions.StockListMeanParameterException;
+
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -20,6 +22,13 @@ public class StockList extends LinkedList<StockPrice> {
         this.ticker = ticker;
     }
     
+    public StockPrice getByInstant(final Instant instant){
+        if(stream().anyMatch( x -> x.getInstant().equals(instant) )) {
+            return stream().filter(x -> x.getInstant().equals(instant)).iterator().next();
+        }else{
+            return null;
+        }
+    }
     public StockList filterStocksAndSort(StockList secondStock) {
         return filterStocksAndSort(secondStock, null, null);
     }
@@ -35,13 +44,27 @@ public class StockList extends LinkedList<StockPrice> {
                 .collect(Collectors.toList()), getTicker());
     }
     
-    public StockList getMean(Integer sessions){
+    public StockList getMean(int sessions){
+        if(sessions <= 0){
+            throw new StockListMeanParameterException();
+        }
         StockList list = new StockList(getTicker());
         for(int i = 0; i <= size() - sessions; i++){
-            BigDecimal mean = new StatisticList(stream().skip(i).limit(sessions - 1).map(x -> x.getValue()).collect(Collectors.toList())).getMean();
+            StatisticList stList = new StatisticList(stream().skip(i).limit(sessions).map(x -> x.getValue()).collect(Collectors.toList()));
+            BigDecimal mean = stList.getMean();
             list.add(new StockPrice(getTicker(), get(i + sessions - 1).getInstant(), mean));
         }
         return list;
+    }
+    
+    public StockList getFirstDerivate() {
+        StockList derivateList = new StockList(getTicker());
+        for(int i = 0; i < size() - 1; i++){
+            BigDecimal firstValue = get(i).getValue();
+            BigDecimal secondValue = get(i+1).getValue();
+            derivateList.add(new StockPrice(getTicker(), get(i).getInstant(), secondValue.subtract(firstValue)));
+        }
+        return derivateList;
     }
     
     public String getTicker() {

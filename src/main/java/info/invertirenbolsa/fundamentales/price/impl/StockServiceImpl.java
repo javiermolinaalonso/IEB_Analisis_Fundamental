@@ -56,24 +56,4 @@ public class StockServiceImpl implements StockService {
         return correlations;
     }
 
-    @Override
-    public List<StockCorrelation> computeBestIntervalCorrelation(StockList s1, StockList s2, Instant from, Instant to, Integer intervalAmount, TemporalUnit unit, Integer stepAmount, TemporalUnit stepUnit) {
-        Instant currentFrom = Instant.from(from);
-        Instant currentTo = Instant.from(from).plus(intervalAmount, unit);
-        
-        List<StockCorrelation> correlations = new ArrayList<>();
-        while(currentTo.isBefore(to)){
-            StockCorrelation correlation = computeCorrelation(s1, s2, currentFrom, currentTo);
-            logger.debug(correlation.toString());
-            if(!correlations.parallelStream().anyMatch(x -> x.getFrom().equals(correlation.getFrom()))) {
-                correlations.add(correlation);
-            }
-            currentFrom = currentFrom.plus(stepAmount, stepUnit);
-            currentTo = currentTo.plus(stepAmount, stepUnit);
-        }
-        
-        correlations.sort((x, y) -> x.getCorrelation().compareTo(y.getCorrelation()));
-        return correlations;
-    }
-    
 }
