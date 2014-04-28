@@ -1,5 +1,7 @@
 package info.invertirenbolsa.fundamentales.price.impl;
 
+import info.invertirenbolsa.fundamentales.price.exceptions.StockNotFoundException;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;

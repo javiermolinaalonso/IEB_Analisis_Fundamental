@@ -1,5 +1,7 @@
 package info.invertirenbolsa.fundamentales.price.impl;
 
+import info.invertirenbolsa.fundamentales.price.exceptions.StockNotFoundException;
+
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;

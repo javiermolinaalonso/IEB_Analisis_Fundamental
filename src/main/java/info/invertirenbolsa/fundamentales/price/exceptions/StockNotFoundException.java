@@ -1,4 +1,4 @@
-package info.invertirenbolsa.fundamentales.price.impl;
+package info.invertirenbolsa.fundamentales.price.exceptions;
 
 public class StockNotFoundException extends Exception {
 
